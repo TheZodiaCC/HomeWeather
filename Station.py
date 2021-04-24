@@ -2,10 +2,9 @@ import time
 from grove.i2c import Bus
 
 
-class Station(object):
-
-    def __init__(self, address=0x44, bus=None):
-        self.address = address
+class I2C_Station:
+    def __init__(self, weather_sensor_address=0x44, bus=None):
+        self.weather_sensor_address = weather_sensor_address
 
         self.bus = Bus(bus)
 
@@ -21,15 +20,20 @@ class Station(object):
                     crc <<= 1
         return crc
 
-    def read(self):
-        self.bus.write_i2c_block_data(self.address, 0x24, [0x00])
+    def read_weather_data(self):
+        self.bus.write_i2c_block_data(self.weather_sensor_address, 0x24, [0x00])
 
         time.sleep(0.016)
 
-        data = self.bus.read_i2c_block_data(self.address, 0x00, 6)
+        data = self.bus.read_i2c_block_data(self.weather_sensor_address, 0x00, 6)
 
         temperature = data[0] * 256 + data[1]
         celsius = -45 + (175 * temperature / 65535.0)
         humidity = 100 * (data[3] * 256 + data[4]) / 65535.0
 
         return celsius, humidity
+
+    def get_weather_sensor_keys(self):
+        keys = ["humidity", "temperature"]
+
+        return keys
