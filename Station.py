@@ -5,7 +5,6 @@ from grove.i2c import Bus
 class I2C_Station:
     def __init__(self, weather_sensor_address=0x44, bus=None):
         self.weather_sensor_address = weather_sensor_address
-
         self.bus = Bus(bus)
 
     def CRC(self, data):
