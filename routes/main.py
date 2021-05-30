@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
-from Station import I2C_Station
-from ResponseData import ResponseData
+from station import I2C_Station
+from response_data import ResponseData
 
 
 main_ = Blueprint("main", __name__, template_folder='template', static_folder='static')

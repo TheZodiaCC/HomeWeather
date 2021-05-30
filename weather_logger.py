@@ -3,7 +3,7 @@ import time
 import threading
 import datetime
 import os
-from Station import I2C_Station
+from station import I2C_Station
 
 
 class WeatherLogger:

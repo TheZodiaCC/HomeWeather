@@ -1,6 +1,6 @@
 from __init__ import create_app
 import os
-from WeatherLogger import WeatherLogger
+from weather_logger import WeatherLogger
 
 app = create_app()
 
