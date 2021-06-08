@@ -1,11 +1,14 @@
 import time
 from grove.i2c import Bus
+import board
+from adafruit_lc709203f import LC709203F
 
 
 class I2C_Station:
     def __init__(self, weather_sensor_address=0x44, bus=None):
         self.weather_sensor_address = weather_sensor_address
         self.bus = Bus(bus)
+        self.powergauge_module = LC709203F(board.I2C())
 
     def CRC(self, data):
         crc = 0xff
@@ -36,3 +39,13 @@ class I2C_Station:
         keys = ["humidity", "temperature"]
 
         return keys
+
+    def get_power_stats(self):
+        try:
+            voltage = self.powergauge_module.cell_voltage
+            power = self.powergauge_module.cell_percent
+        except Exception as e:
+            voltage = None
+            power = None
+
+        return power, voltage
