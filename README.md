@@ -7,3 +7,17 @@
 - DFROBOT Power Boost & Charger Module (MP2636)
 - Adafruit LC709203F Battery monitor
 - 3.7V Li-Pol battery
+
+### Installation
+1. Connect modules to RPi, for LC709203F follow 
+```
+https://learn.adafruit.com/adafruit-lc709203f-lipo-lipoly-battery-monitor/python-circuitpython`
+```
+   
+2. Run docker container with access to GPIO
+```
+sudo docker run --privileged -d \
+-p 8080:8080 \
+-v <path_to_logs_file_on_rpi>:/HomeWeather/logs \
+--name homeweather homeweather
+```
