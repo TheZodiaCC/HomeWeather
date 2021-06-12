@@ -9,3 +9,4 @@ class Config:
     #Logging hours
     LOGGING_SCHEDULE = [x for x in range(24)]
     LOGS_PATH = "logs"
+    CHECK_INTERVAL = 300

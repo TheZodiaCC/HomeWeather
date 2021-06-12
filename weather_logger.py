@@ -7,12 +7,13 @@ from station import I2C_Station
 
 
 class WeatherLogger:
-    def __init__(self, logs_path, logging_schedule):
+    def __init__(self, logs_path, logging_schedule, check_interval):
         self.logs_path = logs_path
         self.logging_schedule = logging_schedule
         self.logger_thread = threading.Thread(target=self.log)
         self.is_running = False
         self.weather_station = I2C_Station()
+        self.check_interval = check_interval
 
     def create_dict(self, name):
         d = {}
@@ -44,7 +45,7 @@ class WeatherLogger:
                         with open(os.path.join(self.logs_path, log_file_name), "w") as file_to_write:
                             file_to_write.write(json.dumps(log_content))
 
-            time.sleep(60)
+            time.sleep(self.check_interval)
 
     def start(self):
         self.is_running = True
