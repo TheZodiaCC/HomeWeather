@@ -19,5 +19,7 @@ https://learn.adafruit.com/adafruit-lc709203f-lipo-lipoly-battery-monitor/python
 sudo docker run --privileged -d \
 -p 8080:8080 \
 -v <path_to_logs_file_on_rpi>:/HomeWeather/logs \
+-v /etc/timezone:/etc/timezone:ro \
+-v /etc/localtime:/etc/localtime:ro \
 --name homeweather homeweather
 ```
