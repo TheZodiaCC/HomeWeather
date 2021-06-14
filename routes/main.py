@@ -43,7 +43,7 @@ def weather():
 @main_.route("/api/get_logged_days")
 def get_logged_days():
     logs_path = os.path.join(CURRENT_DIR, LOGS_PATH)
-    logs = [log for log in os.listdir(logs_path)]
+    logs = list(map(lambda log: log.split(".")[0], os.listdir(logs_path)))
 
     return jsonify(logs)
 
