@@ -1,11 +1,10 @@
 from __init__ import create_app
-from weather_logger import WeatherLogger
+import background_tasks
 
 
 app = create_app()
+background_tasks.init()
 
-WeatherLogger = WeatherLogger(app.config["LOGS_PATH"], app.config["LOGGING_SCHEDULE"], app.config["CHECK_INTERVAL"])
-WeatherLogger.start()
 
 if __name__ == "__main__":
     APP_PORT = app.config["APP_PORT"]
