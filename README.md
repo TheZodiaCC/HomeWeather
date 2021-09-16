@@ -13,8 +13,13 @@
 ```
 https://learn.adafruit.com/adafruit-lc709203f-lipo-lipoly-battery-monitor/python-circuitpython`
 ```
-   
-2. Run docker container with access to GPIO
+
+2. Build docker image
+```
+sudo docker build -t homeweather .
+```
+
+4. Run docker container with access to GPIO
 ```
 sudo docker run --privileged -d \
 -p 8080:8080 \
@@ -24,7 +29,7 @@ sudo docker run --privileged -d \
 --name homeweather homeweather
 ```
 
-3. Set container reboot
+4. Set container reboot
 ```
 sudo docker update --restart unless-stopped homeweather
 ```
