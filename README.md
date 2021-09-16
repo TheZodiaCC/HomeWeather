@@ -23,3 +23,8 @@ sudo docker run --privileged -d \
 -v /etc/localtime:/etc/localtime:ro \
 --name homeweather homeweather
 ```
+
+3. Set container reboot
+```
+sudo docker update --restart unless-stopped homeweather
+```
