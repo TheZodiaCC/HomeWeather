@@ -2,13 +2,14 @@ import time
 from grove.i2c import Bus
 import board
 from adafruit_lc709203f import LC709203F
+from config import Config
 
 
 class I2C_Station:
-    def __init__(self, weather_sensor_address=0x44, bus=None):
+    def __init__(self, weather_sensor_address=Config.I2C_WEATHER_SENSOR_ADDRESS, bus=None):
         self.weather_sensor_address = weather_sensor_address
         self.bus = Bus(bus)
-        self.powergauge_module = LC709203F(board.I2C())
+        self.powergauge_module = LC709203F(board.I2C(), address=Config.I2C_POWERGAUGE_ADDRESS)
 
     def CRC(self, data):
         crc = 0xff
