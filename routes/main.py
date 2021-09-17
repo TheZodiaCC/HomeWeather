@@ -8,6 +8,7 @@ import json
 main_ = Blueprint("main", __name__, template_folder='template', static_folder='static')
 CURRENT_DIR = app.config["CURRENT_DIR"]
 LOGS_PATH = app.config["LOGS_PATH"]
+ENABLE_POWERGAUGE = app.config["ENABLE_POWERGAUGE"]
 
 WeatherStation = I2C_Station()
 
@@ -20,10 +21,12 @@ def station_data():
 
     data = {}
 
-    power, voltage = WeatherStation.get_power_stats()
+    if ENABLE_POWERGAUGE:
+        power, voltage = WeatherStation.get_power_stats()
 
-    data["Battery_Voltage"] = voltage
-    data["Battery_Level"] = power
+        data["Battery_Voltage"] = voltage
+        data["Battery_Level"] = power
+
     data["Uptime"] = uptime
 
     return jsonify(data)

@@ -9,7 +9,9 @@ class I2C_Station:
     def __init__(self, weather_sensor_address=Config.I2C_WEATHER_SENSOR_ADDRESS, bus=None):
         self.weather_sensor_address = weather_sensor_address
         self.bus = Bus(bus)
-        self.powergauge_module = LC709203F(board.I2C(), address=Config.I2C_POWERGAUGE_ADDRESS)
+
+        if Config.ENABLE_POWERGAUGE:
+            self.powergauge_module = LC709203F(board.I2C(), address=Config.I2C_POWERGAUGE_ADDRESS)
 
     def CRC(self, data):
         crc = 0xff
