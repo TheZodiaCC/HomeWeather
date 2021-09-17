@@ -11,7 +11,7 @@
 ### Installation
 1. Connect modules to RPi, for LC709203F follow 
 ```
-https://learn.adafruit.com/adafruit-lc709203f-lipo-lipoly-battery-monitor/python-circuitpython`
+https://learn.adafruit.com/adafruit-lc709203f-lipo-lipoly-battery-monitor/python-circuitpython
 ```
 
 2. Build docker image
