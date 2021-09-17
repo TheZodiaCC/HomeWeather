@@ -36,11 +36,6 @@ class I2C_Station:
 
         return celsius, humidity
 
-    def get_weather_sensor_keys(self):
-        keys = ["humidity", "temperature"]
-
-        return keys
-
     def get_power_stats(self):
         try:
             voltage = self.powergauge_module.cell_voltage

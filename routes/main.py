@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify
 from flask import current_app as app
 from station import I2C_Station
-from response_data import ResponseData
 import os
 import json
 
@@ -33,11 +32,13 @@ def station_data():
 @main_.route("/api/weather")
 def weather():
     humidity, temperature = WeatherStation.read_weather_data()
-    values = [temperature, humidity]
 
-    response_data = ResponseData(WeatherStation.get_weather_sensor_keys(), values)
+    response_data = {
+        "temperature": temperature,
+        "humidity": humidity
+    }
 
-    return response_data.create_response()
+    return jsonify(response_data)
 
 
 @main_.route("/api/get_logged_days")
